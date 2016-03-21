@@ -1,1 +1,0 @@
-# metadisk-client-python
