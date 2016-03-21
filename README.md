@@ -56,7 +56,11 @@ keys.create(key_pair)
 ```
 
 ```javascript
-{u'user': u'new_user@coinbend.com', u'key': u'03a31fa025888eef19833b204aead95192bc4b52f8447a8c8341920e1d9a437108', u'id': u'03a31fa025888eef19833b204aead95192bc4b52f8447a8c8341920e1d9a437108'}
+{
+u'user': u'new_user@coinbend.com',
+u'key': u'03a31fa025888eef19833b204aead95192bc4b52f8447a8c8341920e1d9a437108',
+u'id': u'03a31fa025888eef19833b204aead95192bc4b52f8447a8c8341920e1d9a437108'
+}
 ```
 
 You can view the public keys associated with your account by listing them.
@@ -99,7 +103,8 @@ bucket_id = buckets.create("My cat pictures", storage, transfer, [key_pair])
 ```
 
 ```javascript
-{u'status': u'Active',
+{
+u'status': u'Active',
 u'name': u'My cat pictures',
 u'created': u'2016-03-20T17:13:42.590Z',
 u'transfer': 10,
@@ -125,7 +130,8 @@ u'transfer': 10,
 u'storage': 10,
 u'user': u'new_user@coinbend.com',
 u'pubkeys': [u'03a49c80327f1726ea4cf3050169f36087b0c1232c765421428c704cedd68886ec'],
-u'id': u'56eeda4656bf7b950faace4a'}]
+u'id': u'56eeda4656bf7b950faace4a'
+}]
 ```
 
 Now that you have a bucket its easy to list, update, and delete it.
@@ -151,6 +157,7 @@ u'user': u'new_user@coinbend.com',
 u'pubkeys': [u'03a49c80327f1726ea4cf3050169f36087b0c1232c765421428c704cedd68886ec'],
 u'id': u'56eeda1256bf7b950faace49'
 }
+```
 
 It's also easy to delete buckets.
 
@@ -190,7 +197,8 @@ u'mimetype': u'image/jpeg',
 u'hash': u'5579439f51de8508db790f7fe1212d601afb5c51',
 u'size': 68155,
 u'bucket': u'56eee24d56bf7b950faace69',
-u'filename': u'san_francisco.jpg'}
+u'filename': u'san_francisco.jpg'
+}
 ```
 
 You can list meta data about the files in that bucket like this.
@@ -205,7 +213,8 @@ u'mimetype': u'image/jpeg',
 u'hash': u'5579439f51de8508db790f7fe1212d601afb5c51',
 u'size': 68155,
 u'bucket': u'56eee24d56bf7b950faace69',
-u'filename': u'san_francisco.jpg'}]
+u'filename': u'san_francisco.jpg'
+}]
 ```
 
 ### 5. Download something from the bucket.
