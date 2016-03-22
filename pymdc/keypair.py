@@ -1,4 +1,3 @@
-import unirest
 from bitcoin.core import x, Hash160
 from bitcoin.core.key import CPubKey
 from ecdsa import SigningKey, VerifyingKey, SECP256k1, BadSignatureError

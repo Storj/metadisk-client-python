@@ -7,6 +7,8 @@ class Users():
         rand = lambda: hashlib.sha256(os.urandom(15)).hexdigest()
         self.username = username
         self.password = password or rand()
+        if type(self.password) != type(b""):
+            self.password = self.password.encode("ascii")
 
     def password_hash(self):
         return hashlib.sha256(self.password).hexdigest()

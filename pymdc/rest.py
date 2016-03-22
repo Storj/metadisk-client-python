@@ -1,4 +1,4 @@
-import unirest
+import pymdc.unirest as unirest
 import time
 import json
 import urllib
@@ -15,7 +15,7 @@ def patched_delete(url, **kwargs):
             url += "?"
         else:
             url += "&"
-        url += unirest.utils.dict2query(dict((k, v) for k, v in params.iteritems() if v is not None))  # Removing None values/encode unicode objects
+        url += unirest.utils.dict2query(dict((k, v) for k, v in params.items() if v is not None))  # Removing None values/encode unicode objects
 
     return unirest.__dorequest("DELETE", url, {}, kwargs.get(unirest.HEADERS_KEY, {}), kwargs.get(unirest.AUTH_KEY, None), kwargs.get(unirest.CALLBACK_KEY, None))
 
@@ -86,7 +86,7 @@ def REST(method, resource, params={}, auth=(), headers={}, callback=None):
             payload
         ])
 
-        print(contract)
+        # print(contract)
 
         # Sign contract.
         sig = auth.sign(contract)
@@ -95,13 +95,32 @@ def REST(method, resource, params={}, auth=(), headers={}, callback=None):
         headers["x-pubkey"] = auth.get_public_key("hex")
         headers["x-signature"] = sig
 
-    print(basic_auth)
-    print(params)
-    print(url)
-    print(method)
-    print(content)
-    print(headers)
-    print(handler)
+    # print(basic_auth)
+    # print(params)
+    # print(url)
+    # print(method)
+    # print(content)
+    # print(headers)
+    # print(handler)
+
+    # Convert unicode to bytes.
+    request_info = []
+    for obj in [headers, content, basic_auth]:
+        if type(obj) == dict:
+            for key, value in obj.items():
+                if type(key) == type(u""):
+                    del obj[key]
+                    key = key.encode("ascii")
+
+                if type(value) == type(u""):
+                    obj[key] = value.encode("ascii")
+        else:
+            if type(obj) == type(u""):
+                obj = obj.encode("ascii")
+
+        request_info.append(obj)
+
+    headers, content, basic_auth = request_info
 
     # Make call.
     ret = handler(
@@ -115,6 +134,8 @@ def REST(method, resource, params={}, auth=(), headers={}, callback=None):
     # Async = get response object
     # Sync = get HTTP response
     if callback is None:
-        return ret.body
-    else:
-        return ret
+        # Valid JSON / dict response
+        if hasattr(ret, 'body'):
+            return ret.body
+
+    return ret

@@ -1,12 +1,13 @@
 # metadisk-client-python
 
-This library lets you talk with the Metadisk API from Python. It offers both asynchronous callback-based programming and synchronous (blocking style.)
+This library lets you talk with the Metadisk API from Python 2.*. It offers both asynchronous callback-based programming and synchronous (blocking style.)
+
+For Python 3 links to a requests-based API will be added soon.
 
 ### To do:
-* Finish download code (sorry - will be done soon.)
-* Make library more robust with timeout errors + connection interruptions
-* Write unit tests
-* Test python 2 / 3 -- add this to Travis too
+* Finish download code
+* Figure out max file size problem
+* Add support for Python 3
 
 ### 1. Register an account
 
@@ -238,6 +239,10 @@ user.register(callback=callback)
 ```
 
 If you don't specify a callback for an API call then that call will block the main program and you will get a dictionary for the JSON result as the return value instead.
+
+### Exception handling
+
+Since we're dealing with code talking over networks (which are unreliable) you can't assume every call will be successful. This library doesn't throw any explict errors but the result variable that callbacks take (and the return type) for sync calls can be an Exception object (urllib2.HTTPError, urllib2.URLerror, socket.error, Exception) so you might want to check for that.
 
 Fin.
     

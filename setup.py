@@ -10,7 +10,7 @@ from setuptools import setup, find_packages
 setup(
     name='pymdc',
     description="Async and sync Metadisk API client for Python.",
-    long_description=open("README.rst").read(),
+    long_description=open("README.md").read(),
     keywords="metadisk, api, client, python",
     url='http://storj.io',
     author='Matthew Roberts',
