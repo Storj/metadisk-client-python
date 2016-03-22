@@ -1,3 +1,6 @@
 python-bitcoinlib==0.5.0
 ecdsa==0.13
 future
+coverage
+pep8
+coveralls
