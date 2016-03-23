@@ -2,7 +2,7 @@
 
 This library lets you talk with the Metadisk API from Python 2.*. It offers both asynchronous callback-based programming and synchronous (blocking style.)
 
-For Python 3 links to a requests-based API will be added soon.
+For Python 3 there is a requests-based API available here: https://github.com/hwkns/metadisk-python-sdk
 
 ### To do:
 * Finish download code
